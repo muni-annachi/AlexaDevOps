@@ -1,0 +1,289 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "incident hub",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AnswerIntent",
+                    "slots": [
+                        {
+                            "name": "Answer",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "ok {Answer}",
+                        "the answer is {Answer}",
+                        "my answer is {Answer}",
+                        "is it {Answer}",
+                        "{Answer} is my answer",
+                        "{Answer}"
+                    ]
+                },
+                {
+                    "name": "DontKnowIntent",
+                    "slots": [],
+                    "samples": [
+                        "i don't know",
+                        "don't know",
+                        "i don't know that one",
+                        "dunno",
+                        "skip",
+                        "i don't know that",
+                        "who knows",
+                        "i don't know this question"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StartOverIntent",
+                    "samples": [
+                        "start over",
+                        "go back to incident hub",
+                        "go back all the way",
+                        "start new session"
+                    ]
+                },
+                {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CreateIntent",
+                    "slots": [
+                        {
+                            "name": "description",
+                            "type": "AMAZON.Book",
+                            "samples": [
+                                "incident is {description}",
+                                "{description}"
+                            ]
+                        },
+                        {
+                            "name": "priority",
+                            "type": "priority",
+                            "samples": [
+                                "its a {priority} incident",
+                                "{priority}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "create a {priority} priority incident",
+                        "create incident",
+                        "create incident with {description}"
+                    ]
+                },
+                {
+                    "name": "ReadIncidentIntent",
+                    "slots": [],
+                    "samples": [
+                        "any high priority incidents today",
+                        "read incidents",
+                        "any open high priority incidents",
+                        "what are highg priority incidents today"
+                    ]
+                },
+                {
+                    "name": "UpdateIncidentIntent",
+                    "slots": [
+                        {
+                            "name": "status",
+                            "type": "status",
+                            "samples": [
+                                "{status}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "update status of the incident",
+                        "update this incident status with {status}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "priority",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "high"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "medium"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "low"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "status",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "waiting"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "in progress"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "closed"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "open"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CreateIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "description",
+                            "type": "AMAZON.Book",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.244467944401.1079434354928"
+                            }
+                        },
+                        {
+                            "name": "priority",
+                            "type": "priority",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.353315689636.371651305929"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ReadIncidentIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": []
+                },
+                {
+                    "name": "UpdateIncidentIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "status",
+                            "type": "status",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1165730781686.934562141074"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.1165730781686.934562141074.1216767698826",
+                                    "values": [
+                                        "in progress",
+                                        "closed",
+                                        "open"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.244467944401.1079434354928",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "tell me more about incident"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the incident description"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.353315689636.371651305929",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "priority of incident"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the priority of incident"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1165730781686.934562141074",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is new status"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what is the status to update to. In progress or closed"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1165730781686.934562141074.1216767698826",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "open, closed or in progress"
+                    }
+                ]
+            }
+        ]
+    }
+}
