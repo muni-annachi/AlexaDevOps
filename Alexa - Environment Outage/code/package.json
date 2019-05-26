@@ -1,0 +1,14 @@
+{
+  "name": "skill-sample-nodejs-minecraft-helper",
+  "version": "2.0.0",
+  "description": "Minecraft Helper sample skill",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ask-sdk": "^2.0.0",
+    "i18next": "^10.6.0",
+    "i18next-sprintf-postprocessor": "^0.2.2"
+  }
+}
