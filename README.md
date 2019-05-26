@@ -4,8 +4,9 @@ This repository has Alexa services developed for making DevOps operation handsfr
 # Usecases
 
 ## Incident Hub:
-[[https://github.com/munibabuannachi/HandsfreeDevOpsWithAlexa/blob/master/images/IncidentHub.png|IncidentHub]]
+![IncidentHub](https://github.com/munibabuannachi/HandsfreeDevOpsWithAlexa/blob/master/images/IncidentHub.png)
 
 ## Knowledge Hub:
-[[https://github.com/munibabuannachi/HandsfreeDevOpsWithAlexa/blob/master/images/Knowledgebase.png|Knowledgebase]]
+![Knowledgebase](https://github.com/munibabuannachi/HandsfreeDevOpsWithAlexa/blob/master/images/Knowledgebase.png)
+
 
