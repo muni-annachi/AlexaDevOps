@@ -192,7 +192,7 @@ async function handleCreate(handlerInput) {
         console.log("\n\nLoading handler\n\n");
   
         const dynamodbParams = {
-          TableName: 'DYNAMODB_TABLE_EXPENSES',
+          TableName: 'DEVOPS_INCIDENT_HUB',
           Item: {
             id: uuid.v4(),
             userId: userId,
@@ -278,7 +278,7 @@ async function handleCreate(handlerInput) {
         console.log("\n\nLoading handler\n\n");
 
         var params = {
-            TableName: "DYNAMODB_TABLE_EXPENSES",
+            TableName: "DEVOPS_INCIDENT_HUB",
             ProjectionExpression: "#pr, incDesc, userId,incStatus, id",
             FilterExpression: "#pr = :priority and #st = :incidentStatus",
             ExpressionAttributeNames: {
@@ -343,7 +343,7 @@ async function handleCreate(handlerInput) {
     console.log("\n\nLoading handler\n\n ,,, "+ savedIncidentId);
       if(typeof(savedIncidentId) != "undefined") {
            var params = {
-            TableName: "DYNAMODB_TABLE_EXPENSES",
+            TableName: "DEVOPS_INCIDENT_HUB",
             Key : {
               "id" : savedIncidentId
             },
@@ -387,29 +387,6 @@ async function handleCreate(handlerInput) {
   }
 
 function startGame(newGame, handlerInput) {
-  
-  const options = {
-            host: 'ec2-3-81-14-128.compute-1.amazonaws.com',
-            path: '/job/SampleXML/build',
-            port: 80,
-            method: 'POST'
-        };
-        var req = http.request(options, function (res) {
-            var responseString = "";
-        
-            res.on("data", function (data) {
-                responseString += data;
-                // save all the data from response
-                console.log('response '+ JSON.stringify(responseString));
-            });
-            res.on("end", function () {
-                console.log(responseString); 
-                // print to console when response ends
-            });
-        });
-        req.write('');
-        req.end();
-  
   
   
   

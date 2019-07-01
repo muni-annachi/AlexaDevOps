@@ -1,0 +1,4 @@
+jenkins_url: http://ec2-18-212-172-124.compute-1.amazonaws.com/ 
+jenkins_username: admin
+jenkins_auth_token: admin
+test:1161a0f90af734477c120a3b335de4e9a5

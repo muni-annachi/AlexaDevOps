@@ -1,0 +1,258 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "jenkins",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": [
+                        "how does it work",
+                        "how do you work",
+                        "what is this",
+                        "what can you do",
+                        "which commands do you understand",
+                        "What can I ask you"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": [
+                        "close this app",
+                        "stop this app",
+                        "quit jenkins"
+                    ]
+                },
+                {
+                    "name": "JobStatusIntent",
+                    "slots": [
+                        {
+                            "name": "jobname",
+                            "type": "JOBNAME",
+                            "samples": [
+                                "For {jobname}",
+                                "{jobname}",
+                                "{jobname} please",
+                                "Status for {jobname}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "has {jobname} finished",
+                        "is {jobname} finished",
+                        "is {jobname} already finished",
+                        "is {jobname} still running",
+                        "what's the latest update for {jobname}",
+                        "any update on {jobname}",
+                        "what's up with {jobname}",
+                        "how is {jobname} doing",
+                        "what is the status of {jobname}",
+                        "status of {jobname}",
+                        "status of the build of {jobname}",
+                        "the status of {jobname}",
+                        "get statu",
+                        "status",
+                        "status update",
+                        "I want to get the status of a job"
+                    ]
+                },
+                {
+                    "name": "StartJobIntent",
+                    "slots": [
+                        {
+                            "name": "jobname",
+                            "type": "JOBNAME",
+                            "samples": [
+                                "{jobname}",
+                                "{jobname} please",
+                                "start {jobname}",
+                                "build {jobname}",
+                                "I want to run {jobname}",
+                                "run {jobname}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "run job {jobname}",
+                        "run {jobname}",
+                        "build {jobname}",
+                        "initiate the build for {jobname}",
+                        "start {jobname}",
+                        "start job {jobname}",
+                        "start job",
+                        "start build"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "JOBNAME",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "build master"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "test job"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "STATUS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "has failed"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has been aborted"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "has finished succesfully"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "is running"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "JobStatusIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "jobname",
+                            "type": "JOBNAME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-JobStatusIntent.IntentSlot-jobname"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "StartJobIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "jobname",
+                            "type": "JOBNAME",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Intent-StartJobIntent.IntentSlot-jobname"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "SKILL_RESPONSE"
+        },
+        "prompts": [
+            {
+                "id": "Confirm.Intent-CancelJobIntent",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Just to be clear, you want to cancel {jobname}, correct?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I will cancel {jobname}, is that what you want?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Please confirm that you want to cancel {jobname}?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Just to be sure, you want to cancel {jobname}?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-CancelJobIntent.IntentSlot-jobname",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which job do you want to cancel?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Which job?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent-CancelJobIntent.IntentSlot-jobname",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Just to be sure, you want to cancel {jobname}?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Please confirm that you want to cancel {jobname}?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "I will cancel {jobname}, is that what you want?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Just to be clear, you want to cancel {jobname}, correct?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-JobStatusIntent.IntentSlot-jobname",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which job?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "For which job should I give you the status?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Intent-StartJobIntent.IntentSlot-jobname",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Which job should I start?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "Ok, I can start a job. Which one?"
+                    }
+                ]
+            }
+        ]
+    }
+}
